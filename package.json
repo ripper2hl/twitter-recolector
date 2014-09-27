@@ -1,0 +1,19 @@
+{
+  "name": "recolector-twitter",
+  "version": "0.0.1",
+  "description": "Descarga tuits para posteriormente ser analizados",
+  "main": "server.js",
+  "dependencies": {
+    "express": "~3",
+    "mongoose": "~3.8.14",
+    "ntwitter": "~0.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node server",
+    "start": "node server.js",
+    "postinstall": "bower install"
+  },
+  "author": "Jesus Perales",
+  "license": "BSD-2-Clause"
+}
