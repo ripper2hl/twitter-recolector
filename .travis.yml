@@ -4,12 +4,12 @@ node_js:
 
 # blacklist
 branches:
-  except:
-    - experimental
-
+except:
+- legacy
+- experimental
+- develop
 # whitelist
 branches:
-  only:
-    - master
-    - stable
-    - develop
+only:
+- master
+- stable
