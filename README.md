@@ -1,0 +1,2 @@
+#Twitter recolector [![Build Status](https://travis-ci.org/ripper2hl/twitter-recolector.svg?branch=master)](https://travis-ci.org/ripper2hl/twitter-recolector) [![Code Climate](https://codeclimate.com/github/ripper2hl/twitter-recolector/badges/gpa.svg)](https://codeclimate.com/github/ripper2hl/twitter-recolector) [![Test Coverage](https://codeclimate.com/github/ripper2hl/twitter-recolector/badges/coverage.svg)](https://codeclimate.com/github/ripper2hl/twitter-recolector)  ![David](https://david-dm.org/ripper2hl/twitter-recolector.png) 
+
