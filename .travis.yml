@@ -1,15 +1,20 @@
 language: node_js
 node_js:
-- 0.10
-
-# blacklist
-branches:
+- 0.1
+branches: 
 except:
 - legacy
 - experimental
 - develop
-# whitelist
-branches:
 only:
 - master
 - stable
+deploy:
+  provider: openshift
+  user: ripper2hl
+  password:
+    secure: iOiWc3Jx4AR+QiGLnjv0ohFW5EPN0NhpjnM/qNgpJNMR11yg/pU06SbPw8v44DmEGt/9FNZdtxPlYj+V2+RrJCYbO4zn6egsgGyLYwlEPCW3mztsvcJiHTGDlIlDwtps5WiD5Q6M/uijHkXOzHDuc+QuR61g9PwEeFzfN/Xvkxc=
+  app: twitter
+  domain: jesusisrael
+  on:
+    repo: ripper2hl/twitter-recolector
