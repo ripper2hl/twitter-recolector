@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+- 0.10
+
+# blacklist
+branches:
+except:
+- legacy
+- experimental
+- develop
+# whitelist
+branches:
+only:
+- master
+- stable
