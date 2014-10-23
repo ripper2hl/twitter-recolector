@@ -39,7 +39,7 @@ var twit = new twitter({
 //Busca y almacena tuits por geolocalizacion en tiempo real
 tuit.count({},function(err,count){
   if(!err){
-    if(count < 10){
+    if(count < 1000){
       twit.stream('statuses/filter', {'locations':'-100.75,24.8,-99.75,25.8'}, function(stream) {
         stream.on('data', function (data) {
           tuit.create({
