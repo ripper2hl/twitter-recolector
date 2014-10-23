@@ -2,7 +2,9 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
+var fs = require('fs');
 var mongoose = require('mongoose');
+var request = require('request');
 var twitter = require('ntwitter');
 var tuit = require('./model/tuit');
 
