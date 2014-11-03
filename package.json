@@ -11,7 +11,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "node server",
+    "test": "echo test",
     "start": "node server.js"
   },
   "author": "Jesus Perales",
