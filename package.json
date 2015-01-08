@@ -9,7 +9,9 @@
     "request": "~2.33.0",
     "ntwitter": "~0.5.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "david": "~5.0.0"
+  },
   "scripts": {
     "test": "echo test",
     "start": "node server.js"
