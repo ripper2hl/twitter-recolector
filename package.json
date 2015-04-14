@@ -4,16 +4,20 @@
   "description": "Descarga tuits para posteriormente ser analizados",
   "main": "server.js",
   "dependencies": {
-    "express": "~3",
-    "mongoose": "~3.8.14",
-    "request": "~2.33.0",
-    "ntwitter": "~0.5.0"
+    "express": "^4.12.3",
+    "mongoose": "^4.0.1",
+    "ntwitter": "~0.5.0",
+    "request": "^2.55.0",
+    "body-parser": "~1.12.2",
+    "method-override": "~2.3.2",
+    "morgan": "~1.5.2"
   },
   "devDependencies": {
-    "david": "~5.0.0"
+    "david": "^6.1.6"
   },
   "scripts": {
     "test": "echo test",
+    "prestart": "npm install",
     "start": "node server.js"
   },
   "author": "Jesus Perales",

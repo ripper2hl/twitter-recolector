@@ -7,6 +7,9 @@ var mongoose = require('mongoose');
 var request = require('request');
 var twitter = require('ntwitter');
 var tuit = require('./model/tuit');
+var logger = require('morgan');
+var methodOverride = require('method-override');
+var bodyParser = require('body-parser');
 
 //Mongo Configuration
 var userMongo = process.env.OPENSHIFT_MONGODB_DB_USERNAME || '';
@@ -75,12 +78,10 @@ tuit.count({},function(err,count){
 
 var app = express();
 // Configuración
-app.configure(function() {
-  app.use(express.static(__dirname + '/public'));
-  app.use(express.logger('dev'));
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-});
+app.use(express.static(__dirname + '/public'));
+app.use(logger('dev'));
+app.use(bodyParser());
+app.use(methodOverride());
 
 
 //Obtiene todos los tuits de la base de datos
