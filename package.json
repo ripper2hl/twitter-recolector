@@ -13,11 +13,12 @@
     "morgan": "~1.5.2"
   },
   "devDependencies": {
+    "bower": "^1.4.1",
     "david": "^6.1.6"
   },
   "scripts": {
     "test": "echo test",
-    "prestart": "npm install",
+    "prestart": "npm install && node node_modules/bower/bin/bower install",
     "start": "node server.js"
   },
   "author": "Jesus Perales",
