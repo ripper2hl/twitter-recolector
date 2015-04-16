@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="twitterRecolector">
+  <head>
+
+    <base href="/">
+
+    <title>twitterRecolector</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+
+    <!-- build:css app.css -->
+
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-timeline/dist/angular-timeline.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <!-- endinject -->
+
+    <!-- inject:css -->
+    <link rel="stylesheet" href="styles/css/app.css">
+    <!-- endinject -->
+
+    <!-- endbuild -->
+
+  </head>
+  <body>
+
+    <strong>twitterRecolector</strong>
+
+    <nav-bar></nav-bar>
+
+    <div ng-view></div>
+
+    <script src="socket.io/socket.io.js"></script>
+
+    <!-- build:js app.js -->
+
+    <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-socket-io/socket.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular-timeline/dist/angular-timeline.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- endinject -->
+
+    <!-- inject:js -->
+    <script src="app.js"></script>
+    <script src="directives/nav-bar/nav-bar.directive.js"></script>
+    <script src="services/auth/auth.js"></script>
+    <script src="services/socket/socket.mock.js"></script>
+    <script src="services/socket/socket.service.js"></script>
+    <script src="views/home/home.controller.js"></script>
+    <script src="views/home/home.js"></script>
+    <script src="views/login/login.controller.js"></script>
+    <script src="views/login/login.js"></script>
+    <script src="views/signup/signup.controller.js"></script>
+    <script src="views/signup/signup.js"></script>
+    <!-- endinject -->
+
+    <!-- endbuild -->
+
+  </body>
+</html>

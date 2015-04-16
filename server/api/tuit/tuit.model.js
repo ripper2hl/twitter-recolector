@@ -1,6 +1,9 @@
-var mongoose = require('mongoose');
+'use strict';
 
-var Tuit =  mongoose.model('Tuit',{
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+var TuitSchema = new Schema({
   user : { type: String, required: true },
   status : { type: String, required: true },
   img : { type: String, required: true },
@@ -8,4 +11,4 @@ var Tuit =  mongoose.model('Tuit',{
   city : { type: String, required: true }
 });
 
-module.exports = Tuit;
+module.exports = mongoose.model('Tuit', UserSchema);
