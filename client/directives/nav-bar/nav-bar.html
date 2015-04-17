@@ -1,26 +1,21 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">
-          <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-        </a>
+<nav>
+    <md-toolbar md-scroll-shrink>
+      <div class="md-toolbar-tools">
+        <h3>
+          <span>My App Title</span>
+        </h3>
+        <section layout="row" layout-sm="column" layout-align="center center">
+
+          <md-button ng-href="/"  >home</md-button>
+          <md-button ng-href="/signup" ng-if="!Auth.isLogged()"  >signup</md-button>
+          <md-button ng-href="/login" ng-if="!Auth.isLogged()"  >login</md-button>
+          <md-button ng-click="Auth.logout()" ng-if="Auth.isLogged()"  >
+          logout
+          </md-button>
+          <md-button  >
+            logged in: {{ Auth.isLogged() }}
+            </md-button>
+        </section>
       </div>
-    <ul class="nav navbar-nav navbar-right">
-      <li>
-        <a href="/">home</a>
-      </li>
-      <li ng-if="!Auth.isLogged()">
-        <a href="/signup">signup</a>
-      </li>
-      <li ng-if="!Auth.isLogged()">
-        <a href="/login">login</a>
-      </li>
-      <li ng-if="Auth.isLogged()">
-        <a href="" ng-click="Auth.logout()">logout</a>
-      </li>
-      <li>
-        <pre>logged in: {{ Auth.isLogged() }}</pre>
-      </li>
-    </ul>
-  </div>
+    </md-toolbar>
 </nav>

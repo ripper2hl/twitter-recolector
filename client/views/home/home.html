@@ -1,34 +1,15 @@
-<div class="container-fluid">
-  <timeline>
-     <timeline-node side="left">
-       <timeline-badge class="info"><i class="glyphicon glyphicon-check"></i>
-       </timeline-badge>
-       <timeline-panel>
-         <timeline-heading>
-           <timeline-title>Some twitter post</timeline-title>
-           <p>
-             <small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small>
-           </p>
-         </timeline-heading>
-         <timeline-content>
-           <p>Twitter post goes here</p>
-         </timeline-content>
-       </timeline-panel>
-     </timeline-node>
-     <timeline-node side="right">
-       <timeline-badge class="warning"><i class="glyphicon glyphicon-credit-card"></i>
-       </timeline-badge>
-       <timeline-panel>
-         <timeline-heading>
-           <timeline-title>Another twitter post</timeline-title>
-           <p>
-             <small class="text-muted">12 hours ago via Twitter</small>
-           </p>
-         </timeline-heading>
-         <timeline-content>
-           <p>Another twitter post goes here</p>
-         </timeline-content>
-       </timeline-panel>
-     </timeline-node>
-   </timeline>
-</div>
+<md-content >
+  <md-list>
+    <md-list-item class="md-3-line" ng-repeat="item in todos">
+      <img ng-src="{{item.face}}" alt="{{item.who}}" class="md-avatar">
+      <div class="md-tile-content">
+        <h3>{{item.what}}</h3>
+        <h4>{{item.who}}</h4>
+        <p>
+          {{item.notes}}
+        </p>
+      </div>
+      <md-divider inset></md-divider>
+    </md-list-item>
+  </md-list>
+</md-content>

@@ -7,7 +7,7 @@ angular.module('twitterRecolector', [
   'ngSanitize',
   'ngAnimate',
   'btford.socket-io',
-  'angular-timeline'
+  'ngMaterial'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
 
