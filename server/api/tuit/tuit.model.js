@@ -11,4 +11,4 @@ var TuitSchema = new Schema({
   city : { type: String, required: true }
 });
 
-module.exports = mongoose.model('Tuit', UserSchema);
+module.exports = mongoose.model('Tuit', TuitSchema);
