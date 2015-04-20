@@ -4,6 +4,7 @@ var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 var twitter = require('ntwitter');
 var Tuit = require('./tuit.model');
+var credentials = require('.credentials');
 
 function handleError (res, err) {
   return res.status(500).send(err);
@@ -11,10 +12,10 @@ function handleError (res, err) {
 
 //Twitter configuration
 var twit = new twitter({
-  consumer_key: '',
-  consumer_secret: '',
-  access_token_key: '',
-  access_token_secret: ''
+  consumer_key: credentials.consumer_key,
+  consumer_secret: credentials.consumer_secret,
+  access_token_key: credentials.access_token_key,
+  access_token_secret: credentials.access_token_secret
 });
 
 /**
