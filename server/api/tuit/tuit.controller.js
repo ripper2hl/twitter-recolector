@@ -24,9 +24,13 @@ var twit = new twitter({
 * @param req
 * @param res
 */
-exports.getTuit = function (req, res) {
-  twit.stream('statuses/filter',
-  {'locations':'-100.75,24.8,-99.75,25.8'},
+exports.createTuit = function (req, res) {
+  var latOne = req.query.latOne || '-100.75';
+  var lonOne = req.query.lonOne || '24.8';
+  var latTwo = req.query.latTwo || '-99.75' ;
+  var lonTwo = req.query.lonTwo || '25.8';
+  var location = latOne + ',' + lonOne + ',' + latTwo + ',' + lonTwo;
+  twit.stream('statuses/filter',{'locations': location },
   function(stream) {
     stream.on('data', function (data) {
       Tuit.create({
@@ -38,8 +42,20 @@ exports.getTuit = function (req, res) {
         done : false
         }, function(err,t){
           stream.destroy();
-          res.status(201).json(t);
+          res.status(200).json(t);
           });
       });
+  });
+};
+
+exports.getAll = function (req, res) {
+  Tuit.find( function ( error , tuits ) {
+    res.status(200).json(tuits);
+  });
+};
+
+exports.getTuitById = function (req, res) {
+  Tuit.findOne({ _id : req.params.id } , function ( error , tuits ) {
+    res.status(200).json(tuits);
   });
 };
