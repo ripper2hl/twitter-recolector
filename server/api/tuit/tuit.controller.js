@@ -4,7 +4,7 @@ var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 var twitter = require('ntwitter');
 var Tuit = require('./tuit.model');
-var credentials = require('.credentials');
+var credentials = require('./credentials');
 
 function handleError (res, err) {
   return res.status(500).send(err);
@@ -38,7 +38,7 @@ exports.getTuit = function (req, res) {
         done : false
         }, function(err,t){
           stream.destroy();
-          console.log(err);
+          res.status(201).json(t);
           });
       });
   });
