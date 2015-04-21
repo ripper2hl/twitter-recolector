@@ -1,12 +1,27 @@
 'use strict';
 
 angular.module('twitterRecolector')
-  .controller('HomeCtrl', function () {
+  .controller('HomeCtrl', function ($http,$scope,Socket) {
 
     var vm = this;
 
-    angular.extend(vm, {
-      name: 'HomeCtrl'
+    this.tweets = [];
+
+    $http.get('/api/tweets').success(function (res) {
+      vm.tweets = res;
+      Socket.syncModel('tweet', vm.tweets);
+    });
+
+    vm.add = function () {
+      $http.post('/api/tweets', {  });
+    };
+
+    vm.delete = function (id) {
+      $http.delete('/api/tweets' + id);
+    };
+
+    $scope.$on('$destroy', function () {
+      Socket.unsyncModel('tweet');
     });
 
   });

@@ -3,7 +3,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var TuitSchema = new Schema({
+var TweetSchema = new Schema({
   user : { type: String, required: true },
   status : { type: String, required: true },
   img : { type: String, required: true },
@@ -11,4 +11,4 @@ var TuitSchema = new Schema({
   city : { type: String, required: true }
 });
 
-module.exports = mongoose.model('Tuit', TuitSchema);
+module.exports = mongoose.model('Tweet', TweetSchema);

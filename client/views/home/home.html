@@ -1,12 +1,12 @@
-<md-content >
+  <md-content >
   <md-list>
-    <md-list-item class="md-3-line" ng-repeat="item in todos">
-      <img ng-src="{{item.face}}" alt="{{item.who}}" class="md-avatar">
+    <md-list-item class="md-3-line" ng-repeat="tweet in vm.tweets">
+      <img ng-src="{{tweet.img}}" alt="{{tweet.user}}" class="md-avatar">
       <div class="md-tile-content">
-        <h3>{{item.what}}</h3>
-        <h4>{{item.who}}</h4>
+        <h3>{{tweet.user}}</h3>
+        <h4>{{tweet.city}}</h4>
         <p>
-          {{item.notes}}
+          {{tweet.status}}
         </p>
       </div>
       <md-divider inset></md-divider>

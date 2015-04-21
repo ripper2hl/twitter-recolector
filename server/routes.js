@@ -5,8 +5,8 @@ var config = require('./config/environment');
 module.exports = function (app) {
 
   // API
+  app.use('/api/tweets', require('./api/tweet'));
   app.use('/api/users', require('./api/user'));
-  app.use('/api/tuits', require('./api/tuit'));
 
   // Auth
   app.use('/auth', require('./auth'));
