@@ -7,7 +7,8 @@ angular.module('twitterRecolector', [
   'ngSanitize',
   'ngAnimate',
   'btford.socket-io',
-  'ngMaterial'
+  'ngMaterial',
+  'infinite-scroll'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
 

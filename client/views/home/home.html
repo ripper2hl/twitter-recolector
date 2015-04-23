@@ -1,5 +1,5 @@
   <md-content >
-  <md-list>
+  <md-list infinite-scroll="vm.add()">
     <md-list-item class="md-3-line" ng-repeat="tweet in vm.tweets">
       <img ng-src="{{tweet.img}}" alt="{{tweet.user}}" class="md-avatar">
       <div class="md-tile-content">
