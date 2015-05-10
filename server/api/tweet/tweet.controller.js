@@ -4,6 +4,8 @@ var _ = require('lodash');
 var Tweet = require('./tweet.model');
 var credentials = require('./credentials');
 var twitter = require('ntwitter');
+var sentiment = require('./sentiment/sentimentAnalysis');
+var schedule = require('node-schedule');
 
 //Twitter api configuration
 var twit = new twitter({
@@ -45,37 +47,6 @@ exports.show = function (req, res) {
 };
 
 /**
- * Creates a new Tweet in the DB.
- *
- * @param req
- * @param res
- */
-exports.create = function (req, res) {
-  var latOne = req.query.latOne || '-100.75';
-  var lonOne = req.query.lonOne || '24.8';
-  var latTwo = req.query.latTwo || '-99.75' ;
-  var lonTwo = req.query.lonTwo || '25.8';
-  var location = latOne + ',' + lonOne + ',' + latTwo + ',' + lonTwo;
-  twit.stream('statuses/filter',{'locations': location },
-  function(stream) {
-    stream.on('data', function (data) {
-      Tweet.create({
-        user : data.user.name,
-        status : data.text,
-        img : data.user.profile_image_url,
-        date : data.created_at,
-        city : data.place.name,
-        done : false
-        }, function (err, tweet) {
-          if (err) { return handleError(res, err); }
-          stream.destroy();
-          return res.status(201).json(tweet);
-          });
-      });
-  });
-};
-
-/**
  * Updates an existing Tweet in the DB.
  *
  * @param req
@@ -110,3 +81,53 @@ exports.destroy = function (req, res) {
     });
   });
 };
+
+
+exports.recolect = function(){
+  var latOne = '-100.75';
+  var lonOne = '24.8';
+  var latTwo = '-99.75' ;
+  var lonTwo = '25.8';
+  var location = latOne + ',' + lonOne + ',' + latTwo + ',' + lonTwo;
+  twit.stream('statuses/filter',{'locations': location },
+  function(stream) {
+
+    stream.on('data', function (data) {
+      var sentimentData = sentiment(data.text);
+      Tweet.create({
+        user : data.user.name,
+        status : data.text,
+        img : data.user.profile_image_url,
+        date : data.created_at,
+        city : data.place.name,
+        token : sentimentData.tokens,
+        score : sentimentData.score,
+        wordPositive : sentimentData.positive,
+        wordNegative : sentimentData.negative,
+        done : false
+        }, function (err, tweet) {
+          if (err) { return err; }
+          removeOld();
+          });
+      });
+      
+      stream.on('end', function (response) {
+        // Handle a disconnection
+        console.log('End recolection');
+      });
+
+      stream.on('destroy', function (response) {
+        // Handle a 'silent' disconnection from Twitter, no end/error event fired
+        console.log('Destroy recolection');
+      });
+  });
+};
+
+var removeOld = function (){
+  Tweet.findOne({}, {}, { sort: { 'date' : 1 } }, function(err, tweet) {
+    tweet.remove(function (err) {
+      if(err){return err;}
+      return true;
+    });
+  });
+}

@@ -5,6 +5,7 @@ var config = require('./config/environment');
 module.exports = function (app) {
 
   // API
+  app.use('/api/words', require('./api/word'));
   app.use('/api/tweets', require('./api/tweet'));
   app.use('/api/users', require('./api/user'));
 

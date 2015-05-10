@@ -12,10 +12,6 @@ angular.module('twitterRecolector')
       Socket.syncModel('tweet', vm.tweets);
     });
 
-    vm.add = function () {
-      $http.post('/api/tweets', {  });
-    };
-
     vm.delete = function (id) {
       $http.delete('/api/tweets' + id);
     };
