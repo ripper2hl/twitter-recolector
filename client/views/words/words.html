@@ -31,13 +31,13 @@
       <md-content layout-padding>
         <form>
           <md-input-container>
-            <label for="testInput">Test input</label>
-            <input type="text" id="testInput"
-                   ng-model="data" md-sidenav-focus>
+            <label for="testInput">Buscar: </label>
+            <input type="text"
+                   ng-model="query" md-sidenav-focus>
           </md-input-container>
         </form>
         <md-list>
-          <md-list-item class="md-2-line" ng-repeat="word in vm.words">
+          <md-list-item class="md-2-line" ng-repeat="word in vm.words | filter:query">
             <div class="md-list-item-text" ng-click="vm.selectWord(word)">
               <h3>{{word.name}}</h3>
               <p>{{word.score}}</p>
