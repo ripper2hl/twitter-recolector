@@ -2,11 +2,12 @@
     <md-toolbar md-scroll-shrink>
       <div class="md-toolbar-tools">
         <h3>
-          <span>My App Title</span>
+          <span>Twitter Recolector</span>
         </h3>
         <section layout="row" layout-sm="column" layout-align="center center">
 
-          <md-button ng-href="/"  >home</md-button>
+          <md-button ng-href="/"  >Tweets</md-button>
+          <md-button ng-href="/words" ng-if="Auth.isLogged()"  >Diccionario</md-button>
           <md-button ng-href="/signup" ng-if="!Auth.isLogged()"  >signup</md-button>
           <md-button ng-href="/login" ng-if="!Auth.isLogged()"  >login</md-button>
           <md-button ng-click="Auth.logout()" ng-if="Auth.isLogged()"  >
