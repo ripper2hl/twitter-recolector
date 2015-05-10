@@ -1,0 +1,53 @@
+
+  <div layout="row">
+
+    <div flex layout-padding>
+      <form ng-submit="vm.addWord(word)" novalidate >
+        <md-input-container>
+          <label>Palabra :</label>
+          <input name="name" ng-model="vm.word.name" required type="text">
+        </md-input-container>
+
+        <md-input-container>
+          <label>Score : </label>
+          <input name="score" ng-model="vm.word.score" required type="number">
+        </md-input-container>
+
+        <md-button type="submit" class="md-raised md-primary" >
+          Guardar
+        </md-button>
+
+        <md-button type="reset" ng-click="vm.toggleRight()"
+          class="md-primary">
+          Ver lista de palabras
+        </md-button>
+      </form>
+    </div>
+
+    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+      <md-toolbar class="md-theme-light">
+        <h1 class="md-toolbar-tools">Lista de palabras</h1>
+      </md-toolbar>
+      <md-content layout-padding>
+        <form>
+          <md-input-container>
+            <label for="testInput">Test input</label>
+            <input type="text" id="testInput"
+                   ng-model="data" md-sidenav-focus>
+          </md-input-container>
+        </form>
+        <md-list>
+          <md-list-item class="md-2-line" ng-repeat="word in vm.words">
+            <div class="md-list-item-text" ng-click="vm.selectWord(word)">
+              <h3>{{word.name}}</h3>
+              <p>{{word.score}}</p>
+            </div>
+          </md-list-item>
+        </md-list>
+        <md-button ng-click="close()" class="md-primary">
+          Cerrar
+        </md-button>
+      </md-content>
+    </md-sidenav>
+
+  </div>

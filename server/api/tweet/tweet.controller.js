@@ -84,14 +84,15 @@ exports.destroy = function (req, res) {
 
 
 exports.recolect = function(){
-  var latOne = '-100.75';
-  var lonOne = '24.8';
-  var latTwo = '-99.75' ;
-  var lonTwo = '25.8';
+  var latOne = '-74';
+  var lonOne = '40';
+  var latTwo = '-73' ;
+  var lonTwo = '41';
+  //MTY -100.75, 24.8 , -99.75 ,25.8
+  //San Fransisco -122.75,36.8,-121.75,37.8
   var location = latOne + ',' + lonOne + ',' + latTwo + ',' + lonTwo;
   twit.stream('statuses/filter',{'locations': location },
   function(stream) {
-
     stream.on('data', function (data) {
       var sentimentData = sentiment(data.text);
       Tweet.create({
@@ -99,7 +100,7 @@ exports.recolect = function(){
         status : data.text,
         img : data.user.profile_image_url,
         date : data.created_at,
-        city : data.place.name,
+        city : data.place.name || undefined,
         token : sentimentData.tokens,
         score : sentimentData.score,
         wordPositive : sentimentData.positive,
@@ -110,7 +111,7 @@ exports.recolect = function(){
           removeOld();
           });
       });
-      
+
       stream.on('end', function (response) {
         // Handle a disconnection
         console.log('End recolection');
