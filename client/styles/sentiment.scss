@@ -1,0 +1,56 @@
+/**
+ * sentiment.scss
+ */
+$very-positive-color : green ;
+$positive-color : blue;
+$neutral-color : gray;
+$negative-color : brown;
+$very-negative-color : red;
+
+.very-positive{
+  color : $very-positive-color;
+}
+
+.positive{
+  color : $positive-color;
+}
+
+.neutral{
+  color : $neutral-color;
+}
+
+.negative{
+  color : $negative-color;
+}
+
+.very-negative{
+  color : $very-negative-color;
+}
+
+.img-sentiment{
+  width: 70px;
+  height: 70px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.very-positive .img-sentiment{
+
+  background: url('../../assets/images/very-positive.svg') no-repeat;
+}
+
+.positive .img-sentiment{
+  background: url('../../assets/images/positive.svg') no-repeat;
+}
+
+.neutral .img-sentiment{
+  background: url('../../assets/images/neutral.svg') no-repeat;
+}
+
+.negative .img-sentiment{
+  background: url('../../assets/images/negative.svg') no-repeat;
+}
+
+.very-negative .img-sentiment{
+  background: url('../../assets/images/very-negative.svg') no-repeat;
+}

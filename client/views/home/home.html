@@ -4,28 +4,33 @@
         <h1>Tweets: </h1>
       </md-subheader>
       <md-list layout-padding infinite-scroll="vm.loadMore()" infinite-scroll-distance="1" >
-        <md-list-item class="md-3-line" ng-repeat="tweet in vm.tweets">
-          <img ng-src="{{tweet.img}}" alt="{{tweet.user}}" class="md-avatar">
-          <div class="md-tile-content">
-            <h3>{{tweet.user}}</h3>
-            <h4>{{tweet.city}}</h4>
-            <p>
-              {{tweet.status}}
-            </p>
-            <p>Puntuacion : </p>
-            <p>
-              {{tweet.score}}
-            </p>
+        <md-list-item class="md-3-line" ng-repeat="tweet in vm.tweets"
+        ng-class="{
+          'very-negative' : tweet.score <= -2,
+          'negative' : tweet.score < 0 && tweet.score > -2 ,
+          'neutral' : tweet.score == 0 ,
+          'positive' : tweet.score < 2 && tweet.score > 0 ,
+          'very-positive' : tweet.score >= 2 }">
+            <img ng-src="{{tweet.img}}" alt="{{tweet.user}}" class="md-avatar">
+            <div class="md-tile-content">
+              <h3>{{tweet.user}}</h3>
+              <h4>{{tweet.city}}</h4>
+              <p>
+                {{tweet.status}}
+              </p>
+              <p>Puntuacion : </p>
+              <p class="md-display-2">
+                <img class="img-sentiment" />{{tweet.score}}
+              </p>
 
-            <p>Palabras detectadas: </p>
-            <md-chips ng-model="tweet.token" readonly="true"></md-chips>
+              <p>Palabras detectadas: </p>
+              <md-chips ng-model="tweet.token" readonly="true"></md-chips>
 
-            <p>Palabras positivas: </p>
-            <md-chips ng-model="tweet.wordPositive" readonly="true"></md-chips>
+              <p>Palabras positivas: </p>
+              <md-chips ng-model="tweet.wordPositive" readonly="true"></md-chips>
 
-            <p>Palabras negativas: </p>
-            <md-chips ng-model="tweet.wordNegative" readonly="true"></md-chips>
-
+              <p>Palabras negativas: </p>
+              <md-chips ng-model="tweet.wordNegative" readonly="true"></md-chips>
           </div>
           <md-divider inset></md-divider>
         </md-list-item>
