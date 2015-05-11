@@ -13,9 +13,11 @@ angular.module('twitterRecolector')
     vm.word.score = "";
     vm.words = Word.query();
 
-    vm.addWord = function (){
-      console.log(vm.word);
-      Word.save(vm.word);
+    vm.addWord = function (word){
+      Word.save(vm.word).
+      $promise.then(function(){
+        vm.word = {};
+      });
     }
 
     vm.selectWord = function (word){
