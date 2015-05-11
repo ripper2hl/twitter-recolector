@@ -82,45 +82,49 @@ exports.destroy = function (req, res) {
   });
 };
 
-
 exports.recolect = function(){
-  var latOne = '-74';
-  var lonOne = '40';
-  var latTwo = '-73' ;
-  var lonTwo = '41';
-  //MTY -100.75, 24.8 , -99.75 ,25.8
-  //San Fransisco -122.75,36.8,-121.75,37.8
-  var location = latOne + ',' + lonOne + ',' + latTwo + ',' + lonTwo;
-  twit.stream('statuses/filter',{'locations': location },
-  function(stream) {
-    stream.on('data', function (data) {
-      var sentimentData = sentiment(data.text);
-      Tweet.create({
-        user : data.user.name,
-        status : data.text,
-        img : data.user.profile_image_url,
-        date : data.created_at,
-        city : data.place.name || undefined,
-        token : sentimentData.tokens,
-        score : sentimentData.score,
-        wordPositive : sentimentData.positive,
-        wordNegative : sentimentData.negative,
-        done : false
-        }, function (err, tweet) {
-          if (err) { return err; }
-          removeOld();
-          });
-      });
+  var j = schedule.scheduleJob('42 * * * *', function(){
+    console.log('Start recolection!');
+    var latOne = flagLocation ? '-74' : '-100.75';
+    var lonOne = flagLocation ? '40' : '24.8';
+    var latTwo = flagLocation ? '-73' : '-99.75';
+    var lonTwo = flagLocation ? '41' : '25.8';
+    //MTY -100.75, 24.8 , -99.75 ,25.8
+    //San Fransisco -122.75,36.8,-121.75,37.8
+    var location = latOne + ',' + lonOne + ',' + latTwo + ',' + lonTwo;
+    twit.stream('statuses/filter',{'locations': location },
+    function(stream) {
+      stream.on('data', function (data) {
+        var sentimentData = sentiment(data.text);
+        Tweet.create({
+          user : data.user.name,
+          status : data.text,
+          img : data.user.profile_image_url,
+          date : data.created_at,
+          city : data.place.name || undefined,
+          token : sentimentData.tokens,
+          score : sentimentData.score,
+          wordPositive : sentimentData.positive,
+          wordNegative : sentimentData.negative,
+          done : false
+          }, function (err, tweet) {
+            if (err) { return err; }
+            removeOld();
+            });
+        });
 
-      stream.on('end', function (response) {
-        // Handle a disconnection
-        console.log('End recolection');
-      });
+        stream.on('end', function (response) {
+          // Handle a disconnection
+          toggleFlagLocation();
+          console.log('End recolection');
+        });
 
-      stream.on('destroy', function (response) {
-        // Handle a 'silent' disconnection from Twitter, no end/error event fired
-        console.log('Destroy recolection');
-      });
+        stream.on('destroy', function (response) {
+          // Handle a 'silent' disconnection from Twitter, no end/error event fired
+          console.log('Destroy recolection');
+        });
+        setTimeout(stream.destroy, 60000);
+    });
   });
 };
 
@@ -131,4 +135,10 @@ var removeOld = function (){
       return true;
     });
   });
+}
+
+var flagLocation = false;
+
+var toggleFlagLocation = function (){
+  flagLocation = !flagLocation;
 }
