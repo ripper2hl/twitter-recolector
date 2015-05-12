@@ -83,7 +83,7 @@ exports.destroy = function (req, res) {
 };
 
 exports.recolect = function(){
-  var j = schedule.scheduleJob('42 * * * *', function(){
+  var j = schedule.scheduleJob('20 * * * *', function(){
     console.log('Start recolection!');
     var latOne = flagLocation ? '-74' : '-100.75';
     var lonOne = flagLocation ? '40' : '24.8';
@@ -123,7 +123,7 @@ exports.recolect = function(){
           // Handle a 'silent' disconnection from Twitter, no end/error event fired
           console.log('Destroy recolection');
         });
-        setTimeout(stream.destroy, 60000);
+        setTimeout(stream.destroy, 480000);
     });
   });
 };
