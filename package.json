@@ -66,6 +66,7 @@
     "socket.io": "^1.3.5",
     "translate": "^0.7.0"
   },
+  "main": "./server/server.js",
   "scripts": {
     "start": "node server/server.js",
     "test": "gulp test"
